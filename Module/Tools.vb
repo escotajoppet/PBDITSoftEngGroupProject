@@ -26,6 +26,17 @@ Module Tools
         generateHash = builder.ToString
     End Function
 
+    Public Function generatePIN() As String
+        Dim pin As String = ""
+
+        For i As Integer = 0 To 3
+            Randomize()
+            pin &= Int(Rnd() * 10)
+        Next
+
+        generatePIN = pin
+    End Function
+
     Public Function SimplePINEncryption(ByVal PIN As String) As String
         ' Encrypts/decrypts the PIN string using
         ' a simple ASCII value-swapping algorithm
@@ -66,6 +77,29 @@ Module Tools
             record.Add("ad", rec.address)
             record.Add("cn", rec.contactNumber)
             record.Add("bal", rec.balance)
+
+            records.Add(record)
+        Next
+
+        populateDGV(_dgv, columns, items, records.ToArray)
+    End Sub
+
+    Public Sub populateTransactionsDataGridView(ByVal _dgv As DataGridView, ByVal _records As Transaction())
+        Dim columns As String() = {"transactionIDCol", "transactionAccountNumberCol", "transactionTypeCol", "transactionDateCol", "transactionTimeCol", "transactionBalanceCol", "transactionTotalAmountCol"}
+        Dim items As String() = {"id", "an", "type", "date", "time", "bal", "ta"}
+        Dim record As Hashtable
+        Dim records As List(Of Hashtable) = New List(Of Hashtable)
+
+        For Each rec In _records
+            record = New Hashtable
+
+            record.Add("id", rec.id)
+            record.Add("an", rec.customerAccountNumber)
+            record.Add("type", rec.transactionType)
+            record.Add("date", rec.transactionDate)
+            record.Add("time", rec.transactionTime)
+            record.Add("bal", rec.transactionBalance)
+            record.Add("ta", rec.transactionTotalAmount)
 
             records.Add(record)
         Next

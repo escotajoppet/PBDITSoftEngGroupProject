@@ -210,6 +210,21 @@ Public Class Customer
         End If
     End Function
 
+    Public Function resetPin() As String
+        Dim pin As String = generatePIN()
+
+        Dim table As String = "customers"
+        Dim fields As String() = {"pin"}
+        Dim values As String() = {"'" & SimplePINEncryption(pin) & "'"}
+        Dim condition As String = "[account_number]=" & Me.accountNumber
+
+        If updateQuery(table, fields, values, condition) Then
+            resetPin = "Reset PIN successful: " & Me.accountNumber & vbCrLf & vbCrLf & "New PIN: " & pin
+        Else
+            resetPin = "Error Reseting PIN"
+        End If
+    End Function
+
     ' private methods
     Private Function addTransaction(ByVal _type As String, ByVal _totalAmount As Decimal)
         Dim deytime As String() = Split(Date.Now.ToString("MM-dd-yyyy HH:mm:ss"), " ")

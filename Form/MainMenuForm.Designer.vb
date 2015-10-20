@@ -25,18 +25,33 @@ Partial Class mainMenuForm
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.adminPageTab = New System.Windows.Forms.TabPage()
         Me.adminGB = New System.Windows.Forms.GroupBox()
+        Me.transactionReportGB = New System.Windows.Forms.GroupBox()
         Me.newAdminBtn = New System.Windows.Forms.Button()
         Me.logOutBtn = New System.Windows.Forms.Button()
         Me.resetPinBtn = New System.Windows.Forms.Button()
         Me.trasactionReportBtn = New System.Windows.Forms.Button()
         Me.manageCustomersBtn = New System.Windows.Forms.Button()
+        Me.adminBlankGB = New System.Windows.Forms.GroupBox()
+        Me.resetPinGB = New System.Windows.Forms.GroupBox()
+        Me.customersDGV = New System.Windows.Forms.DataGridView()
+        Me.customersIDCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.customersAccountNumberCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.customersLastNameCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.customersFirstNameCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.customersMiddleNameCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.customersPinCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.customersAddressCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.customersContactNumberCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.customersBalanceCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.byCB = New System.Windows.Forms.ComboBox()
+        Me.searchCustomerTB = New System.Windows.Forms.TextBox()
+        Me.confirmResetPinBtn = New System.Windows.Forms.Button()
         Me.addAdminGB = New System.Windows.Forms.GroupBox()
         Me.addAdminBtn = New System.Windows.Forms.Button()
         Me.newPasswordTB = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.newUsernameTB = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.resetPinGB = New System.Windows.Forms.GroupBox()
         Me.welcomeAdminGB = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.adminLogInBtn = New System.Windows.Forms.Button()
@@ -87,25 +102,23 @@ Partial Class mainMenuForm
         Me.blankGB = New System.Windows.Forms.GroupBox()
         Me.checkBalanceGB = New System.Windows.Forms.GroupBox()
         Me.balanceLbl = New System.Windows.Forms.Label()
-        Me.confirmResetPinBtn = New System.Windows.Forms.Button()
-        Me.searchCustomerTB = New System.Windows.Forms.TextBox()
-        Me.byCB = New System.Windows.Forms.ComboBox()
-        Me.customersDGV = New System.Windows.Forms.DataGridView()
-        Me.customersIDCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.customersAccountNumberCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.customersLastNameCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.customersFirstNameCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.customersMiddleNameCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.customersPinCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.customersAddressCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.customersContactNumberCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.customersBalanceCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.adminBlankGB = New System.Windows.Forms.GroupBox()
+        Me.datesCB = New System.Windows.Forms.ComboBox()
+        Me.transactionsCB = New System.Windows.Forms.ComboBox()
+        Me.transactionsDGV = New System.Windows.Forms.DataGridView()
+        Me.transactionIDCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.transactionAccountNumberCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.transactionTypeCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.transactionDateCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.transactionTimeCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.transactionBalanceCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.transactionTotalAmountCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl1.SuspendLayout()
         Me.adminPageTab.SuspendLayout()
         Me.adminGB.SuspendLayout()
-        Me.addAdminGB.SuspendLayout()
+        Me.transactionReportGB.SuspendLayout()
         Me.resetPinGB.SuspendLayout()
+        CType(Me.customersDGV, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.addAdminGB.SuspendLayout()
         Me.welcomeAdminGB.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.customerPageTab.SuspendLayout()
@@ -116,7 +129,7 @@ Partial Class mainMenuForm
         Me.withdrawGB.SuspendLayout()
         Me.depositGB.SuspendLayout()
         Me.checkBalanceGB.SuspendLayout()
-        CType(Me.customersDGV, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.transactionsDGV, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -144,19 +157,32 @@ Partial Class mainMenuForm
         '
         'adminGB
         '
+        Me.adminGB.Controls.Add(Me.transactionReportGB)
         Me.adminGB.Controls.Add(Me.newAdminBtn)
         Me.adminGB.Controls.Add(Me.logOutBtn)
         Me.adminGB.Controls.Add(Me.resetPinBtn)
         Me.adminGB.Controls.Add(Me.trasactionReportBtn)
         Me.adminGB.Controls.Add(Me.manageCustomersBtn)
-        Me.adminGB.Controls.Add(Me.addAdminGB)
         Me.adminGB.Controls.Add(Me.adminBlankGB)
         Me.adminGB.Controls.Add(Me.resetPinGB)
-        Me.adminGB.Location = New System.Drawing.Point(3, 6)
+        Me.adminGB.Controls.Add(Me.addAdminGB)
+        Me.adminGB.Location = New System.Drawing.Point(6, 6)
         Me.adminGB.Name = "adminGB"
-        Me.adminGB.Size = New System.Drawing.Size(543, 383)
+        Me.adminGB.Size = New System.Drawing.Size(540, 380)
         Me.adminGB.TabIndex = 1
         Me.adminGB.TabStop = False
+        '
+        'transactionReportGB
+        '
+        Me.transactionReportGB.Controls.Add(Me.transactionsDGV)
+        Me.transactionReportGB.Controls.Add(Me.transactionsCB)
+        Me.transactionReportGB.Controls.Add(Me.datesCB)
+        Me.transactionReportGB.Location = New System.Drawing.Point(135, 19)
+        Me.transactionReportGB.Name = "transactionReportGB"
+        Me.transactionReportGB.Size = New System.Drawing.Size(399, 355)
+        Me.transactionReportGB.TabIndex = 0
+        Me.transactionReportGB.TabStop = False
+        Me.transactionReportGB.Text = "Transaction Report"
         '
         'newAdminBtn
         '
@@ -202,6 +228,125 @@ Partial Class mainMenuForm
         Me.manageCustomersBtn.TabIndex = 0
         Me.manageCustomersBtn.Text = "MANAGE CUSTOMERS"
         Me.manageCustomersBtn.UseVisualStyleBackColor = True
+        '
+        'adminBlankGB
+        '
+        Me.adminBlankGB.Location = New System.Drawing.Point(135, 19)
+        Me.adminBlankGB.Name = "adminBlankGB"
+        Me.adminBlankGB.Size = New System.Drawing.Size(399, 355)
+        Me.adminBlankGB.TabIndex = 6
+        Me.adminBlankGB.TabStop = False
+        '
+        'resetPinGB
+        '
+        Me.resetPinGB.Controls.Add(Me.customersDGV)
+        Me.resetPinGB.Controls.Add(Me.byCB)
+        Me.resetPinGB.Controls.Add(Me.searchCustomerTB)
+        Me.resetPinGB.Controls.Add(Me.confirmResetPinBtn)
+        Me.resetPinGB.Location = New System.Drawing.Point(135, 19)
+        Me.resetPinGB.Name = "resetPinGB"
+        Me.resetPinGB.Size = New System.Drawing.Size(399, 355)
+        Me.resetPinGB.TabIndex = 0
+        Me.resetPinGB.TabStop = False
+        Me.resetPinGB.Text = "Reset Pin"
+        '
+        'customersDGV
+        '
+        Me.customersDGV.AllowUserToAddRows = False
+        Me.customersDGV.AllowUserToDeleteRows = False
+        Me.customersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.customersDGV.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.customersIDCol, Me.customersAccountNumberCol, Me.customersLastNameCol, Me.customersFirstNameCol, Me.customersMiddleNameCol, Me.customersPinCol, Me.customersAddressCol, Me.customersContactNumberCol, Me.customersBalanceCol})
+        Me.customersDGV.Location = New System.Drawing.Point(9, 46)
+        Me.customersDGV.Name = "customersDGV"
+        Me.customersDGV.ReadOnly = True
+        Me.customersDGV.RowHeadersVisible = False
+        Me.customersDGV.Size = New System.Drawing.Size(384, 274)
+        Me.customersDGV.TabIndex = 4
+        '
+        'customersIDCol
+        '
+        Me.customersIDCol.HeaderText = "ID"
+        Me.customersIDCol.Name = "customersIDCol"
+        Me.customersIDCol.ReadOnly = True
+        Me.customersIDCol.Visible = False
+        '
+        'customersAccountNumberCol
+        '
+        Me.customersAccountNumberCol.HeaderText = "Account Number"
+        Me.customersAccountNumberCol.Name = "customersAccountNumberCol"
+        Me.customersAccountNumberCol.ReadOnly = True
+        Me.customersAccountNumberCol.Width = 120
+        '
+        'customersLastNameCol
+        '
+        Me.customersLastNameCol.HeaderText = "Last Name"
+        Me.customersLastNameCol.Name = "customersLastNameCol"
+        Me.customersLastNameCol.ReadOnly = True
+        '
+        'customersFirstNameCol
+        '
+        Me.customersFirstNameCol.HeaderText = "First Name"
+        Me.customersFirstNameCol.Name = "customersFirstNameCol"
+        Me.customersFirstNameCol.ReadOnly = True
+        '
+        'customersMiddleNameCol
+        '
+        Me.customersMiddleNameCol.HeaderText = "Middle Name"
+        Me.customersMiddleNameCol.Name = "customersMiddleNameCol"
+        Me.customersMiddleNameCol.ReadOnly = True
+        '
+        'customersPinCol
+        '
+        Me.customersPinCol.HeaderText = "Personal Identification Number (PIN)"
+        Me.customersPinCol.Name = "customersPinCol"
+        Me.customersPinCol.ReadOnly = True
+        Me.customersPinCol.Visible = False
+        Me.customersPinCol.Width = 210
+        '
+        'customersAddressCol
+        '
+        Me.customersAddressCol.HeaderText = "Address"
+        Me.customersAddressCol.Name = "customersAddressCol"
+        Me.customersAddressCol.ReadOnly = True
+        '
+        'customersContactNumberCol
+        '
+        Me.customersContactNumberCol.HeaderText = "Contact Number"
+        Me.customersContactNumberCol.Name = "customersContactNumberCol"
+        Me.customersContactNumberCol.ReadOnly = True
+        Me.customersContactNumberCol.Width = 120
+        '
+        'customersBalanceCol
+        '
+        Me.customersBalanceCol.HeaderText = "Balance"
+        Me.customersBalanceCol.Name = "customersBalanceCol"
+        Me.customersBalanceCol.ReadOnly = True
+        '
+        'byCB
+        '
+        Me.byCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.byCB.FormattingEnabled = True
+        Me.byCB.Items.AddRange(New Object() {"Account Number", "Last Name", "First Name"})
+        Me.byCB.Location = New System.Drawing.Point(287, 19)
+        Me.byCB.Name = "byCB"
+        Me.byCB.Size = New System.Drawing.Size(106, 21)
+        Me.byCB.TabIndex = 3
+        '
+        'searchCustomerTB
+        '
+        Me.searchCustomerTB.Location = New System.Drawing.Point(9, 20)
+        Me.searchCustomerTB.Name = "searchCustomerTB"
+        Me.searchCustomerTB.Size = New System.Drawing.Size(272, 20)
+        Me.searchCustomerTB.TabIndex = 2
+        '
+        'confirmResetPinBtn
+        '
+        Me.confirmResetPinBtn.Location = New System.Drawing.Point(284, 326)
+        Me.confirmResetPinBtn.Name = "confirmResetPinBtn"
+        Me.confirmResetPinBtn.Size = New System.Drawing.Size(109, 23)
+        Me.confirmResetPinBtn.TabIndex = 1
+        Me.confirmResetPinBtn.Text = "Reset Pin"
+        Me.confirmResetPinBtn.UseVisualStyleBackColor = True
         '
         'addAdminGB
         '
@@ -259,27 +404,14 @@ Partial Class mainMenuForm
         Me.Label11.TabIndex = 0
         Me.Label11.Text = "Username:"
         '
-        'resetPinGB
-        '
-        Me.resetPinGB.Controls.Add(Me.customersDGV)
-        Me.resetPinGB.Controls.Add(Me.byCB)
-        Me.resetPinGB.Controls.Add(Me.searchCustomerTB)
-        Me.resetPinGB.Controls.Add(Me.confirmResetPinBtn)
-        Me.resetPinGB.Location = New System.Drawing.Point(135, 19)
-        Me.resetPinGB.Name = "resetPinGB"
-        Me.resetPinGB.Size = New System.Drawing.Size(399, 355)
-        Me.resetPinGB.TabIndex = 0
-        Me.resetPinGB.TabStop = False
-        Me.resetPinGB.Text = "Reset Pin"
-        '
         'welcomeAdminGB
         '
         Me.welcomeAdminGB.Controls.Add(Me.GroupBox3)
         Me.welcomeAdminGB.Controls.Add(Me.Label17)
         Me.welcomeAdminGB.Controls.Add(Me.Label18)
-        Me.welcomeAdminGB.Location = New System.Drawing.Point(3, 6)
+        Me.welcomeAdminGB.Location = New System.Drawing.Point(6, 6)
         Me.welcomeAdminGB.Name = "welcomeAdminGB"
-        Me.welcomeAdminGB.Size = New System.Drawing.Size(543, 383)
+        Me.welcomeAdminGB.Size = New System.Drawing.Size(540, 380)
         Me.welcomeAdminGB.TabIndex = 6
         Me.welcomeAdminGB.TabStop = False
         Me.welcomeAdminGB.Text = "Welcome"
@@ -291,7 +423,7 @@ Partial Class mainMenuForm
         Me.GroupBox3.Controls.Add(Me.loginUsernameTB)
         Me.GroupBox3.Controls.Add(Me.Label15)
         Me.GroupBox3.Controls.Add(Me.Label16)
-        Me.GroupBox3.Location = New System.Drawing.Point(117, 118)
+        Me.GroupBox3.Location = New System.Drawing.Point(121, 118)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(304, 99)
         Me.GroupBox3.TabIndex = 11
@@ -344,7 +476,7 @@ Partial Class mainMenuForm
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(93, 62)
+        Me.Label17.Location = New System.Drawing.Point(97, 62)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(347, 20)
         Me.Label17.TabIndex = 10
@@ -354,7 +486,7 @@ Partial Class mainMenuForm
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(123, 26)
+        Me.Label18.Location = New System.Drawing.Point(127, 26)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(293, 29)
         Me.Label18.TabIndex = 9
@@ -763,111 +895,85 @@ Partial Class mainMenuForm
         Me.balanceLbl.TabIndex = 0
         Me.balanceLbl.Text = "Balance"
         '
-        'confirmResetPinBtn
+        'datesCB
         '
-        Me.confirmResetPinBtn.Location = New System.Drawing.Point(284, 326)
-        Me.confirmResetPinBtn.Name = "confirmResetPinBtn"
-        Me.confirmResetPinBtn.Size = New System.Drawing.Size(109, 23)
-        Me.confirmResetPinBtn.TabIndex = 1
-        Me.confirmResetPinBtn.Text = "Reset Pin"
-        Me.confirmResetPinBtn.UseVisualStyleBackColor = True
+        Me.datesCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.datesCB.FormattingEnabled = True
+        Me.datesCB.IntegralHeight = False
+        Me.datesCB.Location = New System.Drawing.Point(6, 19)
+        Me.datesCB.Name = "datesCB"
+        Me.datesCB.Size = New System.Drawing.Size(233, 21)
+        Me.datesCB.TabIndex = 0
         '
-        'searchCustomerTB
+        'transactionsCB
         '
-        Me.searchCustomerTB.Location = New System.Drawing.Point(9, 20)
-        Me.searchCustomerTB.Name = "searchCustomerTB"
-        Me.searchCustomerTB.Size = New System.Drawing.Size(272, 20)
-        Me.searchCustomerTB.TabIndex = 2
+        Me.transactionsCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.transactionsCB.FormattingEnabled = True
+        Me.transactionsCB.Items.AddRange(New Object() {"WITHDRAWAL AND DEPOSIT", "CASH WITHDRAWAL", "CASH DEPOSIT"})
+        Me.transactionsCB.Location = New System.Drawing.Point(245, 19)
+        Me.transactionsCB.Name = "transactionsCB"
+        Me.transactionsCB.Size = New System.Drawing.Size(148, 21)
+        Me.transactionsCB.TabIndex = 1
         '
-        'byCB
+        'transactionsDGV
         '
-        Me.byCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.byCB.FormattingEnabled = True
-        Me.byCB.Items.AddRange(New Object() {"Account Number", "Last Name", "First Name"})
-        Me.byCB.Location = New System.Drawing.Point(287, 19)
-        Me.byCB.Name = "byCB"
-        Me.byCB.Size = New System.Drawing.Size(106, 21)
-        Me.byCB.TabIndex = 3
+        Me.transactionsDGV.AllowUserToAddRows = False
+        Me.transactionsDGV.AllowUserToDeleteRows = False
+        Me.transactionsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.transactionsDGV.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.transactionIDCol, Me.transactionAccountNumberCol, Me.transactionTypeCol, Me.transactionDateCol, Me.transactionTimeCol, Me.transactionBalanceCol, Me.transactionTotalAmountCol})
+        Me.transactionsDGV.Location = New System.Drawing.Point(6, 46)
+        Me.transactionsDGV.Name = "transactionsDGV"
+        Me.transactionsDGV.ReadOnly = True
+        Me.transactionsDGV.RowHeadersVisible = False
+        Me.transactionsDGV.Size = New System.Drawing.Size(387, 303)
+        Me.transactionsDGV.TabIndex = 2
         '
-        'customersDGV
+        'transactionIDCol
         '
-        Me.customersDGV.AllowUserToAddRows = False
-        Me.customersDGV.AllowUserToDeleteRows = False
-        Me.customersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.customersDGV.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.customersIDCol, Me.customersAccountNumberCol, Me.customersLastNameCol, Me.customersFirstNameCol, Me.customersMiddleNameCol, Me.customersPinCol, Me.customersAddressCol, Me.customersContactNumberCol, Me.customersBalanceCol})
-        Me.customersDGV.Location = New System.Drawing.Point(9, 46)
-        Me.customersDGV.Name = "customersDGV"
-        Me.customersDGV.ReadOnly = True
-        Me.customersDGV.RowHeadersVisible = False
-        Me.customersDGV.Size = New System.Drawing.Size(384, 274)
-        Me.customersDGV.TabIndex = 4
+        Me.transactionIDCol.HeaderText = "ID"
+        Me.transactionIDCol.Name = "transactionIDCol"
+        Me.transactionIDCol.ReadOnly = True
+        Me.transactionIDCol.Visible = False
         '
-        'customersIDCol
+        'transactionAccountNumberCol
         '
-        Me.customersIDCol.HeaderText = "ID"
-        Me.customersIDCol.Name = "customersIDCol"
-        Me.customersIDCol.ReadOnly = True
-        Me.customersIDCol.Visible = False
+        Me.transactionAccountNumberCol.HeaderText = "Account Number"
+        Me.transactionAccountNumberCol.Name = "transactionAccountNumberCol"
+        Me.transactionAccountNumberCol.ReadOnly = True
+        Me.transactionAccountNumberCol.Width = 120
         '
-        'customersAccountNumberCol
+        'transactionTypeCol
         '
-        Me.customersAccountNumberCol.HeaderText = "Account Number"
-        Me.customersAccountNumberCol.Name = "customersAccountNumberCol"
-        Me.customersAccountNumberCol.ReadOnly = True
-        Me.customersAccountNumberCol.Width = 120
+        Me.transactionTypeCol.HeaderText = "Type"
+        Me.transactionTypeCol.Name = "transactionTypeCol"
+        Me.transactionTypeCol.ReadOnly = True
         '
-        'customersLastNameCol
+        'transactionDateCol
         '
-        Me.customersLastNameCol.HeaderText = "Last Name"
-        Me.customersLastNameCol.Name = "customersLastNameCol"
-        Me.customersLastNameCol.ReadOnly = True
+        Me.transactionDateCol.HeaderText = "Date"
+        Me.transactionDateCol.Name = "transactionDateCol"
+        Me.transactionDateCol.ReadOnly = True
+        Me.transactionDateCol.Visible = False
         '
-        'customersFirstNameCol
+        'transactionTimeCol
         '
-        Me.customersFirstNameCol.HeaderText = "First Name"
-        Me.customersFirstNameCol.Name = "customersFirstNameCol"
-        Me.customersFirstNameCol.ReadOnly = True
+        Me.transactionTimeCol.HeaderText = "Time"
+        Me.transactionTimeCol.Name = "transactionTimeCol"
+        Me.transactionTimeCol.ReadOnly = True
         '
-        'customersMiddleNameCol
+        'transactionBalanceCol
         '
-        Me.customersMiddleNameCol.HeaderText = "Middle Name"
-        Me.customersMiddleNameCol.Name = "customersMiddleNameCol"
-        Me.customersMiddleNameCol.ReadOnly = True
+        Me.transactionBalanceCol.HeaderText = "Balance"
+        Me.transactionBalanceCol.Name = "transactionBalanceCol"
+        Me.transactionBalanceCol.ReadOnly = True
         '
-        'customersPinCol
+        'transactionTotalAmountCol
         '
-        Me.customersPinCol.HeaderText = "Personal Identification Number (PIN)"
-        Me.customersPinCol.Name = "customersPinCol"
-        Me.customersPinCol.ReadOnly = True
-        Me.customersPinCol.Visible = False
-        Me.customersPinCol.Width = 210
-        '
-        'customersAddressCol
-        '
-        Me.customersAddressCol.HeaderText = "Address"
-        Me.customersAddressCol.Name = "customersAddressCol"
-        Me.customersAddressCol.ReadOnly = True
-        '
-        'customersContactNumberCol
-        '
-        Me.customersContactNumberCol.HeaderText = "Contact Number"
-        Me.customersContactNumberCol.Name = "customersContactNumberCol"
-        Me.customersContactNumberCol.ReadOnly = True
-        Me.customersContactNumberCol.Width = 120
-        '
-        'customersBalanceCol
-        '
-        Me.customersBalanceCol.HeaderText = "Balance"
-        Me.customersBalanceCol.Name = "customersBalanceCol"
-        Me.customersBalanceCol.ReadOnly = True
-        '
-        'adminBlankGB
-        '
-        Me.adminBlankGB.Location = New System.Drawing.Point(135, 19)
-        Me.adminBlankGB.Name = "adminBlankGB"
-        Me.adminBlankGB.Size = New System.Drawing.Size(399, 355)
-        Me.adminBlankGB.TabIndex = 6
-        Me.adminBlankGB.TabStop = False
+        Me.transactionTotalAmountCol.HeaderText = "Total Amount"
+        Me.transactionTotalAmountCol.Name = "transactionTotalAmountCol"
+        Me.transactionTotalAmountCol.ReadOnly = True
+        Me.transactionTotalAmountCol.Visible = False
+        Me.transactionTotalAmountCol.Width = 120
         '
         'mainMenuForm
         '
@@ -880,10 +986,12 @@ Partial Class mainMenuForm
         Me.TabControl1.ResumeLayout(False)
         Me.adminPageTab.ResumeLayout(False)
         Me.adminGB.ResumeLayout(False)
-        Me.addAdminGB.ResumeLayout(False)
-        Me.addAdminGB.PerformLayout()
+        Me.transactionReportGB.ResumeLayout(False)
         Me.resetPinGB.ResumeLayout(False)
         Me.resetPinGB.PerformLayout()
+        CType(Me.customersDGV, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.addAdminGB.ResumeLayout(False)
+        Me.addAdminGB.PerformLayout()
         Me.welcomeAdminGB.ResumeLayout(False)
         Me.welcomeAdminGB.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -902,7 +1010,7 @@ Partial Class mainMenuForm
         Me.depositGB.PerformLayout()
         Me.checkBalanceGB.ResumeLayout(False)
         Me.checkBalanceGB.PerformLayout()
-        CType(Me.customersDGV, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.transactionsDGV, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -985,5 +1093,16 @@ Partial Class mainMenuForm
     Friend WithEvents customersContactNumberCol As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents customersBalanceCol As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents adminBlankGB As System.Windows.Forms.GroupBox
+    Friend WithEvents transactionReportGB As System.Windows.Forms.GroupBox
+    Friend WithEvents transactionsDGV As System.Windows.Forms.DataGridView
+    Friend WithEvents transactionsCB As System.Windows.Forms.ComboBox
+    Friend WithEvents datesCB As System.Windows.Forms.ComboBox
+    Friend WithEvents transactionIDCol As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents transactionAccountNumberCol As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents transactionTypeCol As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents transactionDateCol As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents transactionTimeCol As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents transactionBalanceCol As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents transactionTotalAmountCol As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

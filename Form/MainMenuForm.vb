@@ -1,6 +1,9 @@
 ﻿Imports System.Data.OleDb
 
 Public Class mainMenuForm
+    Dim rowIndex As Integer
+    Dim selectedId As String
+
     Private Sub mainMenuForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Administrator.generateInitialAdmin()
 
@@ -10,6 +13,7 @@ Public Class mainMenuForm
         adminGB.Hide()
     End Sub
 
+    ' CUSTOMERS
     Private Sub loginBtn_Click(sender As Object, e As EventArgs) Handles loginBtn.Click
         Dim accountNumber As Integer = Integer.Parse(loginAccountNumberTB.Text)
         Dim pin As String = SimplePINEncryption(loginPinTB.Text)
@@ -190,6 +194,8 @@ Public Class mainMenuForm
         newPin2TB.Clear()
     End Sub
 
+
+    ' ADMINSTRATORS
     Private Sub adminLogInBtn_Click(sender As Object, e As EventArgs) Handles adminLogInBtn.Click
         Dim username As String = loginUsernameTB.Text
         Dim password As String = generateHash(loginPasswordTB.Text)
@@ -205,6 +211,7 @@ Public Class mainMenuForm
             adminBlankGB.Show()
             resetPinGB.Hide()
             addAdminGB.Hide()
+            transactionReportGB.Hide()
 
             byCB.SelectedItem = "Account Number"
         Else
@@ -221,20 +228,118 @@ Public Class mainMenuForm
         resetPinGB.Show()
         addAdminGB.Hide()
         adminBlankGB.Hide()
+        transactionReportGB.Hide()
+
+        resetPinBtn.Enabled = False
+        newAdminBtn.Enabled = True
+        trasactionReportBtn.Enabled = True
+
+        If searchCustomerTB.Text = "" Then
+            populateCustomersDataGridView(customersDGV, Customer.all)
+        End If
     End Sub
 
     Private Sub newAdminBtn_Click(sender As Object, e As EventArgs) Handles newAdminBtn.Click
         resetPinGB.Hide()
         addAdminGB.Show()
         adminBlankGB.Hide()
+        transactionReportGB.Hide()
+
+        resetPinBtn.Enabled = True
+        newAdminBtn.Enabled = False
+        trasactionReportBtn.Enabled = True
+    End Sub
+
+    Private Sub trasactionReportBtn_Click(sender As Object, e As EventArgs) Handles trasactionReportBtn.Click
+        resetPinGB.Hide()
+        addAdminGB.Hide()
+        adminBlankGB.Hide()
+        transactionReportGB.Show()
+
+        resetPinBtn.Enabled = True
+        newAdminBtn.Enabled = True
+        trasactionReportBtn.Enabled = False
+
+        datesCB.Items.Clear()
+
+        Dim deyts As String() = Transaction.getDates()
+
+        For Each deyt In deyts
+            datesCB.Items.Add(Date.Parse(deyt).ToString("MMMM dd, yyyy"))
+        Next
+
+        datesCB.SelectedIndex = 0
+        transactionsCB.SelectedIndex = 0
     End Sub
 
     Private Sub logOutBtn_Click(sender As Object, e As EventArgs) Handles logOutBtn.Click
         adminGB.Hide()
         welcomeAdminGB.Show()
+
+        resetPinBtn.Enabled = True
+        newAdminBtn.Enabled = True
+        trasactionReportBtn.Enabled = True
     End Sub
 
     Private Sub addAdminBtn_Click(sender As Object, e As EventArgs) Handles addAdminBtn.Click
-        Administrator.addAdministrator(
+        Dim message As String = Administrator.addAdministrator(newUsernameTB.Text, generateHash(newPasswordTB.Text))
+
+        If message.ToLower.Contains("error") Then
+            MsgBox(message, MsgBoxStyle.Critical)
+        Else
+            MsgBox(message, MsgBoxStyle.Information)
+
+            newUsernameTB.Clear()
+            newPasswordTB.Clear()
+        End If
+    End Sub
+
+    Private Sub searchCustomerTB_KeyUp(sender As Object, e As KeyEventArgs) Handles searchCustomerTB.KeyUp
+        Dim keyword As String = searchCustomerTB.Text
+        Dim field As String = byCB.SelectedItem.ToString
+        Dim condition As String
+
+        If keyword.Length > 2 Then
+            condition = "[" & field.Replace(" ", "_").ToLower & "] LIKE '%" & keyword & "%'"
+        Else
+            condition = "1"
+        End If
+
+        populateCustomersDataGridView(customersDGV, Customer.search(condition))
+    End Sub
+
+    Private Sub customersDGV_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles customersDGV.CellClick
+        rowIndex = e.RowIndex
+
+        If rowIndex > -1 Then
+            selectedId = customersDGV.Item("customersIDCol", rowIndex).Value
+        End If
+    End Sub
+
+    Private Sub confirmResetPinBtn_Click(sender As Object, e As EventArgs) Handles confirmResetPinBtn.Click
+        Dim customer As Customer = New Customer(selectedId)
+
+        Dim message As String = customer.resetPin()
+
+        If message.ToLower.Contains("error") Then
+            MsgBox(message, MsgBoxStyle.Critical)
+        Else
+            MsgBox(message, MsgBoxStyle.Information)
+        End If
+    End Sub
+
+    Private Sub datesCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles datesCB.SelectedIndexChanged
+        transactions()
+    End Sub
+
+    Private Sub transactionsCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles transactionsCB.SelectedIndexChanged
+        transactions()
+    End Sub
+
+    Private Sub transactions()
+        Dim deyt As String = Date.Parse(datesCB.SelectedItem.ToString).ToString("MM-dd-yyyy")
+        Dim type As String = transactionsCB.SelectedItem
+
+        populateTransactionsDataGridView(transactionsDGV, Transaction.getTransactionForDay(deyt, type))
     End Sub
 End Class

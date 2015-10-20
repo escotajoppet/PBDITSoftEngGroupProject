@@ -54,6 +54,14 @@
     End Sub
 
     Private Sub searchCustomersTB_KeyUp(sender As Object, e As KeyEventArgs) Handles searchCustomersTB.KeyUp
+        search()
+    End Sub
+
+    Private Sub byCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles byCB.SelectedIndexChanged
+        search()
+    End Sub
+
+    Private Sub search()
         Dim keyword As String = searchCustomersTB.Text
         Dim field As String = byCB.SelectedItem.ToString
         Dim condition As String
@@ -104,11 +112,12 @@
             Dim mn As String = middleNameTB.Text
             Dim ad As String = addressTB.Text
             Dim cn As String = contactNumberTB.Text
-            Dim pin As String = "1018"
+
+            Dim pin As String = generatePIN()
 
             If addEditBtn.Text = "Add Customer" Then
                 action = "ADDED"
-                message = Customer.addCustomer(acctNo, SimplePINEncryption(pin), ln, fn, mn, ad, cn, 5000.0)
+                message = Customer.addCustomer(acctNo, pin, ln, fn, mn, ad, cn, 5000.0)
             Else
                 action = "UPDATED"
                 Dim customer As Customer = New Customer(selectedId)

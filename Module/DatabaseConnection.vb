@@ -4,29 +4,35 @@ Module DatabaseConnection
     Dim dbCon As OleDbConnection = New OleDbConnection
     Dim recordReader As OleDbDataReader
     Dim cmd As OleDbCommand
-    Dim sql As String
+
 
     Public Function selectQuery(ByVal _tableName As String, ByVal _fields As String, ByVal _condition As String) As OleDbDataReader
+        Dim sql As String = "SELECT " & _fields & " FROM `" & _tableName & "` WHERE " & _condition
+
+        selectQuery = selectQueryTemplate(sql)
+    End Function
+
+    Public Function selectDistinctQuery(ByVal _tableName As String, ByVal _fields As String, ByVal _condition As String) As OleDbDataReader
+        Dim sql As String = "SELECT DISTINCT " & _fields & " FROM `" & _tableName & "` WHERE " & _condition
+
+        selectDistinctQuery = selectQueryTemplate(sql)
+    End Function
+
+    Private Function selectQueryTemplate(ByVal _sql As String) As OleDbDataReader
         If connectionEstablished() Then
-            sql = "SELECT " & _fields & " FROM `" & _tableName & "` WHERE " & _condition
-
-            Console.Out.WriteLine(sql)
-
-            cmd = New OleDbCommand(sql, dbCon)
+            cmd = New OleDbCommand(_sql, dbCon)
             recordReader = cmd.ExecuteReader()
 
-            selectQuery = recordReader
+            selectQueryTemplate = recordReader
         Else
-            selectQuery = Nothing
+            selectQueryTemplate = Nothing
             MsgBox("Error: can't establish connection to database", MsgBoxStyle.Critical)
         End If
     End Function
 
     Public Function addQuery(ByVal _tableName As String, ByVal _fields As String, ByVal _values As String) As Boolean
         If connectionEstablished() Then
-            sql = "INSERT INTO `" & _tableName & "` (" & _fields & ") VALUES(" & _values & ")"
-
-            Console.Out.WriteLine(sql)
+            Dim sql As String = "INSERT INTO `" & _tableName & "` (" & _fields & ") VALUES(" & _values & ")"
 
             Try
                 cmd = New OleDbCommand(sql, dbCon)
@@ -48,7 +54,7 @@ Module DatabaseConnection
 
     Public Function updateQuery(ByVal _tableName As String, ByVal _fields As Array, ByVal _values As Array, ByVal _condition As String) As Boolean
         If connectionEstablished() Then
-            sql = "UPDATE `" & _tableName & "` SET "
+            Dim sql As String = "UPDATE `" & _tableName & "` SET "
 
             For i As Integer = 0 To _fields.Length - 1
                 sql &= "[" & _fields(i) & "]=" & _values(i)
@@ -80,7 +86,7 @@ Module DatabaseConnection
 
     Public Function deleteQuery(ByVal _tableName As String, ByVal _condition As String) As Boolean
         If connectionEstablished() Then
-            sql = "DELETE FROM `" & _tableName & "` WHERE " & _condition
+            Dim sql As String = "DELETE FROM `" & _tableName & "` WHERE " & _condition
 
             Try
                 cmd = New OleDbCommand(sql, dbCon)
