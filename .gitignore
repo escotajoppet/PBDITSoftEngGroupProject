@@ -194,3 +194,9 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+PBDITSoftwareEngineeringGroupProjectDB.mdb
+PBDITSoftwareEngineeringGroupProjectDBDataSet.Designer.vb
+PBDITSoftwareEngineeringGroupProjectDBDataSet.xsc
+PBDITSoftwareEngineeringGroupProjectDBDataSet.xsd
+PBDITSoftwareEngineeringGroupProjectDBDataSet.xss
